@@ -1,4 +1,4 @@
-# Catalog
+# catalogue
 
 This project aims to detail who I am as a developer,
 as well as to share some of the technologies that I work with.
