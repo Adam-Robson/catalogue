@@ -1,23 +1,16 @@
 # catalogue
 
-This project aims to detail who I am as a developer,
-as well as to share some of the technologies that I work with.
+This project shares some of the technologies that I work with.
 
 This site was built using [Next.js](https://nextjs.org/), a
 [React](https://react.dev/) framework.
 
-## Table of Contents
-
-- [Catalog](#catalog)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Features](#features)
-  - [Stack](#stack)
-  - [Getting Started](#getting-started)
-    - [Installation](#installation)
-    - [Running Locally](#running-locally)
-  - [Deployment](#deployment)
-  - [Contact](#contact)
+- [Overview](#overview)
+- [Features](#features)
+- [Stack](#stack)
+- [Getting Started](#getting-started)
+- [Deployment](#deployment)
+- [Contact](#contact)
 
 ## Overview
 
