@@ -1,0 +1,254 @@
+@import "tailwindcss";
+
+:root {
+  --pitch-black: #0f0a00;
+  --shadow-grey: hsla(235, 13%, 17%, 1);
+  --gunmetal: hsla(156, 4%, 23%, 1);
+  --terracotta-clay: #a95751;
+  --faded-copper: #a47a65;
+  --glaucous: #6d7dab;
+  --periwinkle: #c7dbff;
+  --dry-sage: hsla(59, 20%, 56%, 1);
+  --olive-wood: hsla(46, 19%, 40%, 1);
+  --soft-peach: hsla(40, 83%, 76%, 1);
+  --soft-linen: hsla(42, 36%, 89%, 1);
+  --vanilla-custard: hsla(61, 35%, 75%, 1);
+  --parchment: #f3eae7;
+  --gradient-right: linear-gradient(90deg, var(--pitch-black), var(--shadow-grey), var(--terracotta-clay), var(--faded-copper), var(--glaucous), var(--periwinkle), var(--dry-sage), var(--olive-wood));
+  --gradient-left: linear-gradient(270deg, var(--pitch-black), var(--shadow-grey), var(--terracotta-clay), var(--faded-copper), var(--glaucous), var(--periwinkle), var(--dry-sage), var(--olive-wood));
+  --background: var(--parchment);
+  --foreground: var(--pitch-black);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: var(--pitch-black);
+    --foreground: var(--parchment);
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Crimson Pro", 'Times New Roman', Times, serif;
+  --font-serif: "Crimson Pro", 'Times New Roman', Times, serif;
+  --font-sans: "Barlow", Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+.root {
+  min-height: 100dvh;
+  height: 100dvh;
+  max-width: 1120px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: var(--header-height, 4rem);
+}
+
+.name {
+  --name-font-size: 13rem;
+  --name-line-height: 1;
+  --name-lines: 2;
+  font-family: var(--font-sans);
+  font-size: var(--name-font-size);
+  font-weight: 500;
+  text-align: left;
+  line-height: var(--name-line-height);
+}
+
+.lastname {
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.name-logo-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  justify-content: center;
+}
+
+.name-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.logo {
+  display: block;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  max-height: min(calc(var(--name-font-size, 13rem) * var(--name-lines, 2) * var(--name-line-height, 1)), 26rem);
+  max-width: 60vw;
+}
+
+.text-cycle {
+  overflow: hidden;
+  height: var(--text-cycle-height, 3.5rem);
+}
+
+.text-cycle__stack {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  animation-name: textCycle;
+  animation-iteration-count: infinite;
+  animation-duration: var(--total);
+  animation-timing-function: steps(var(--n), end);
+  animation-fill-mode: forwards;
+}
+
+.text-cycle__stack span {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+@keyframes textCycle {
+  from { 
+    transform: translateY(0%); 
+  }
+  to { 
+    transform: translateY(calc(-100% * (var(--n) - 1)));
+  }
+}
+
+.text-cycle:hover .text-cycle__stack,
+.text-cycle:focus-within .text-cycle__stack {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text-cycle__stack {
+    animation: none;
+  }
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-height, 4rem);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  padding: 0 1.25rem;
+  z-index: 50;
+}
+
+.nav-list {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1.5rem;
+  align-items: center;
+
+}
+
+.nav-li,
+.nav-link {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  gap: 0.5rem;
+
+}
+
+
+.nav-link svg {
+  /* hidden by default */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px) rotate(0deg);
+  transition: opacity 180ms ease, transform 180ms ease;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+/* reveal icon on hover/focus */
+.nav-link:hover svg,
+.nav-link:focus svg,
+.nav-link:focus-within svg {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) rotate(0deg);
+}
+
+/* About: reveal & start slow continuous spin while hovered */
+.nav-link.nav-about:hover svg,
+.nav-link.nav-about:focus svg,
+.nav-link.nav-about:focus-within svg {
+  opacity: 1;
+  transform: translateY(0) rotate(0deg);
+  animation: navIconSpinSlow 8s linear infinite;
+}
+
+/* Contact: reveal & start slow alternating tilt while hovered */
+.nav-link.nav-contact:hover svg,
+.nav-link.nav-contact:focus svg,
+.nav-link.nav-contact:focus-within svg {
+  opacity: 1;
+  transform: translateY(0) rotate(0deg);
+  transform-origin: center;
+  animation: navIconJitter 0.9s ease-in-out infinite alternate;
+}
+
+@keyframes navIconSpin {
+  0% {
+    transform: translateY(-4px) rotate(0deg);
+  }
+  40% {
+    transform: translateY(0) rotate(180deg);
+  }
+  100% {
+    transform: translateY(0) rotate(360deg);
+  }
+}
+
+@keyframes navIconSpinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes navIconJitter {
+  from { transform: rotate(-8deg); }
+  to { transform: rotate(8deg); }
+}
+
+@keyframes navIconFlip {
+  0% {
+    transform: translateY(-4px) scaleY(1);
+  }
+  50% {
+    transform: translateY(0) scaleY(-1);
+  }
+  100% {
+    transform: translateY(0) scaleY(-1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-link svg {
+    transition: none;
+    animation: none;
+  }
+  .nav-link.nav-about svg,
+  .nav-link.nav-contact svg {
+    animation: none;
+  }
+}
