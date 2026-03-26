@@ -15,7 +15,7 @@ export default function Home() {
           </p>
         </div>
        <Image
-          src="/images/portfoliow.svg"
+          src="/images/eye.svg"
           alt="Description of image"
           width={300}
           height={300}
