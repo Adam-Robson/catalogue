@@ -42,6 +42,8 @@ body {
   max-width: 1120px;
   width: 100%;
   margin: 0 auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -50,7 +52,7 @@ body {
 }
 
 .name {
-  --name-font-size: 13rem;
+  --name-font-size: clamp(4rem, 10vw, 10rem);
   --name-line-height: 1;
   --name-lines: 2;
   font-family: var(--font-sans);
@@ -85,7 +87,7 @@ body {
   width: auto;
   height: auto;
   object-fit: contain;
-  max-height: min(calc(var(--name-font-size, 13rem) * var(--name-lines, 2) * var(--name-line-height, 1)), 26rem);
+  max-height: min(calc(var(--name-font-size, 11rem) * var(--name-lines, 2) * var(--name-line-height, 1)), 26rem);
   max-width: 60vw;
 }
 
@@ -149,6 +151,7 @@ body {
 }
 
 .nav-list {
+  max-width: 400px;
   width: 100%;
   display: flex;
   flex-direction: row;

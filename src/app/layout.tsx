@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Crimson_Pro, Barlow_Condensed } from 'next/font/google';
 import "./globals.css";
 import { IconProvider } from "@/contexts/icon-provider";
+import { Analytics } from "@vercel/analytics/next"
 
 const crimsonPro = Crimson_Pro({
   variable: "--font-crimson-pro",
@@ -33,6 +34,7 @@ export default function RootLayout({
         >
           {children}
         </body>
+        <Analytics />   
       </html>
    </IconProvider>
   );
